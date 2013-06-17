@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+  <title>Preload Example</title>
+
+  <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" />
+
+  <script src="/javascripts/onerror.js"></script>
+
+  <!-- cordova.js is served from localhost to ensure the correct version -->
+  <script src="http://localhost/appgyver/cordova.js"></script>
+  <script src="/components/steroids-js/steroids.js"></script>
+
+  <!-- controllers can be loaded dynamically based on the resource name -->
+  <script src="/controllers/preloadExample.js"></script>  
+
+</head>
+<body>
+
+  <script>
+  steroids.view.navigationBar.show("Preload Example");
+
+  // Listen for window.postMessage() messages that the preloaded webview sends us
+
+  window.addEventListener("message", function(msg) {
+    var elem = document.querySelector("#preloadStatus");
+
+    elem.textContent = "preloaded for " + msg.data.uptime + " seconds";
+
+  });
+
+  // Initialize and preload the view
+
+  var showView = new steroids.views.WebView("/views/preloadExample/show.html");
+  
+  showView.preload();
+
+  // Helper functions
+
+  function openShow() {
+    steroids.layers.push(showView);
+  }
+
+</script>
+
+
+<div class="content-padded">
+
+  <div class="topcoat-button--cta center full" ontouchend="openShow()">Open preloaded WebView</div>
+
+  <p>Preload status: <span id="preloadStatus">Not yet preloaded, preloading...</span></p>
+</div>
+
+
+
+</body>
+</html>

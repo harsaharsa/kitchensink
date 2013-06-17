@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+  <title>Animation Example</title>
+
+  <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" />
+
+  <script src="/javascripts/onerror.js"></script>
+
+  <!-- cordova.js is served from localhost to ensure the correct version -->
+  <script src="http://localhost/appgyver/cordova.js"></script>
+  <script src="/components/steroids-js/steroids.js"></script>
+
+  <!-- Controllers can be loaded dynamically based on the resource name -->
+  <!-- Find the JavaScript for the Animation example at app/controllers/animationExample.js -->
+  <script src="/controllers/animationExample.js"></script>  
+
+</head>
+<body>
+
+  <style>
+.count {
+  display:block;
+  float:right;
+  color:#00AEEF;
+}
+.content-padded > div {
+  margin-bottom:8px;
+}
+</style>
+
+<div class="content-padded">
+
+  <div class="topcoat-button full center" ontouchend="performAnimation('flipVerticalFromTop', 1.2)">
+    flipVerticalFromTop
+    <span class="count" id="flipVerticalFromTopCounter">0</span>
+  </div>
+
+  <div class="topcoat-button full center" ontouchend="performAnimation('flipHorizontalFromLeft', 0.7)">
+    flipHorizontalFromLeft
+    <span class="count" id="flipHorizontalFromLeftCounter">0</span>
+  </div>
+
+  <div class="topcoat-button full center" ontouchend="performAnimation('slideFromRight', 0.2)">
+    slideFromRight
+    <span class="count" id="slideFromRightCounter">0</span>
+  </div>
+
+  <div class="topcoat-button full center" ontouchend="performAnimation('slideFromTop', 0.8)">
+    slideFromTop
+    <span class="count" id="slideFromTopCounter">0</span>
+  </div>
+
+  <div class="topcoat-button full center" ontouchend="performAnimation('curlDown', 0.8)">
+    curlDown
+    <span class="count" id="curlDownCounter">0</span>
+  </div>
+
+  <div class="topcoat-button full center" ontouchend="performAnimation('curlUp', 0.4)">
+    curlUp
+    <span class="count" id="curlUpCounter">0</span>
+  </div>
+
+</div>
+
+
+
+</body>
+</html>

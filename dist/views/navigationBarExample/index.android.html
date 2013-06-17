@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+  <title>Navigaton Bar Example</title>
+
+  <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" />
+
+  <script src="/javascripts/onerror.js"></script>
+
+  <!-- cordova.js is served from localhost to ensure the correct version -->
+  <script src="http://localhost/appgyver/cordova.js"></script>
+  <script src="/components/steroids-js/steroids.js"></script>
+
+  <!-- Controllers can be loaded dynamically based on the resource name -->
+  <script src="/controllers/navigationBarExample.js"></script>  
+
+</head>
+<body>
+
+  <script>
+
+// Set up our login text element
+
+var loginText = null;
+
+document.addEventListener("DOMContentLoaded", function() {
+  loginText = document.querySelector("#login-text");
+});
+
+steroids.view.navigationBar.show("Phoenix Foundation");
+
+// Login and logout buttons
+
+var loginButton = new steroids.buttons.NavigationBarButton();
+loginButton.title = "Log in";
+
+var logoutButton = new steroids.buttons.NavigationBarButton();
+logoutButton.title = "Log out";
+
+loginButton.onTap = function() {
+  loginText.textContent = "Welcome, Agnus M.!";
+  steroids.view.navigationBar.setButtons({
+    right: [logoutButton]
+  });
+};
+
+logoutButton.onTap = function() {
+  loginText.textContent = "Please log in.";
+  steroids.view.navigationBar.setButtons({
+    right: [loginButton]
+  });
+}
+
+// Initially display the login button
+
+steroids.view.navigationBar.setButtons({
+  right: [loginButton]
+});
+
+</script>
+
+<div class="content-padded">
+
+  <h2 id="login-text">Please log in.</h2>
+
+</div>
+
+
+</body>
+</html>

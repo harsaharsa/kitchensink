@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+  <title>Modal Example</title>
+
+  <link rel="stylesheet" href="/vendor/topcoat/css/topcoat-mobile-light.css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" />
+
+  <script src="/javascripts/onerror.js"></script>
+
+  <!-- cordova.js is served from localhost to ensure the correct version -->
+  <script src="http://localhost/appgyver/cordova.js"></script>
+  <script src="/components/steroids-js/steroids.js"></script>
+
+  <!-- controllers can be loaded dynamically based on the resource name -->
+  <script src="/controllers/modalExample.js"></script>  
+
+</head>
+<body>
+
+  <script>
+
+  // Listen for window.postMessage() messages that the modal webview sends to us
+  window.addEventListener("message", function(msg) {
+
+    if ( msg.data.action == "closeModal" ) {
+      steroids.modal.hide();
+    }
+
+  });
+
+  // Initialize the modal
+  var modalView = new steroids.views.WebView("/views/modalExample/show.html");
+
+  steroids.view.navigationBar.show("Modal Example");
+
+  // Helper functions
+  function openModal() {
+    steroids.modal.show(modalView);
+  }
+
+</script>
+
+
+<div class="content-padded">
+
+  <div class="topcoat-button--cta full center" ontouchend="openModal()">Open modal</div>
+
+</div>
+
+
+
+</body>
+</html>
